@@ -1,5 +1,7 @@
 package com.irctc.onlinetrainticketbooking.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +20,8 @@ public class TrainDao {
 		 return trainRepository.save(train);
 	 }
 	
+	// display all train details		 
+	public List<Train> getAllTrainDetails(){
+		return trainRepository.findAll();
+	}
 }

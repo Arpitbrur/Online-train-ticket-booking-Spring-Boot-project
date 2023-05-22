@@ -12,7 +12,7 @@ import com.irctc.onlinetrainticketbooking.dto.User;
 import com.irctc.onlinetrainticketbooking.repsonse.ResponseStructure;
 import com.irctc.onlinetrainticketbooking.service.UserService;
 
-import jakarta.servlet.http.HttpSession;
+//import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
@@ -30,5 +30,11 @@ public class UserController {
 		return service.insertUser(user);
 	}
 	
-	
+	// User login--------------------------------------------------------------------------
+	@GetMapping("/loginUser/{userName}/{userPassword}")
+	public ResponseStructure<User> loginUser(@PathVariable String userName, @PathVariable String userPassword) {
+				
+		//httpSession.setAttribute("password", userPassword);
+		return service.loginUser(userName, userPassword);
+	}
 }

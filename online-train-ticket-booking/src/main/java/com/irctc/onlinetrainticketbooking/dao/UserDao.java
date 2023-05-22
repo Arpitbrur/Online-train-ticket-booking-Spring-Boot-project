@@ -17,6 +17,9 @@ public class UserDao {
 		return userRepository.save(user);
 	}
 	
-	
+	// User login--------------------------------------------------------------------------
+	public User loginUser(String userName) {
+		return userRepository.getByUserName(userName);
+	}
 
 }

@@ -60,5 +60,34 @@ public class UserService {
 	}
 	
 	
+	// User login--------------------------------------------------------------------------
+		public ResponseStructure<User> loginUser(String userName, String userPassword) {
+			User user  =userDao.loginUser(userName);	
+				
+			if(user != null) {
+					
+				if((user.getUserName().equals(userName)) && (user.getUserPassword().equals(userPassword))) {
+						
+					responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+					responseStructure.setMsg("User----LoggedIn----Successfully...");
+					responseStructure.setDescription("once user logged in he can able to book the ticket ...");
+					responseStructure.setData(user);
+					return responseStructure;
+				}else {
+					responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+					responseStructure.setMsg("User----LoggedIn----failed...");
+					responseStructure.setDescription("Hey please check your username and password...... ...");
+					responseStructure.setData(user);
+					return responseStructure;
+				}
+			}else {
+				responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+				responseStructure.setMsg("User----failed ----to-----loggin...");
+				responseStructure.setDescription(".......provided username is not registered.....yet....");
+				responseStructure.setData(user);
+				return responseStructure;
+			}
+		}
+			
 	
 }

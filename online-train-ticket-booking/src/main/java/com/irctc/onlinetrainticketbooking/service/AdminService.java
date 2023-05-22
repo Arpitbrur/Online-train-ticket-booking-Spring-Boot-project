@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.irctc.onlinetrainticketbooking.dao.AdminDao;
 import com.irctc.onlinetrainticketbooking.dto.Admin;
+import com.irctc.onlinetrainticketbooking.repsonse.ResponseStructure;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -18,7 +20,7 @@ public class AdminService {
 	private AdminDao adminDao;
 	
 	@Autowired
-	private HttpSession httpSession;
+	private ResponseStructure<Admin> responseStructure;
 
 	// register admin methods where i will register admin details in tables
 	
@@ -49,20 +51,32 @@ public class AdminService {
 	
 	// login Admin with adminName and Password
 		 
-	public Admin loginWithAdmin(String adminName,String adminPassword) {
+public ResponseStructure<Admin> loginWithAdmin(String adminName,String adminPassword) {
 		
 		Admin admin=adminDao.loginWithAdmin(adminName);
 		
-		if(admin != null) {
-			if((admin.getAdminName().equalsIgnoreCase(adminName))
-					&&(admin.getAdminPassword().contentEquals(adminPassword))) {
-				httpSession.setAttribute("username", admin.getAdminName());
-				return admin;
+		if(admin!=null) {
+			if((admin.getAdminName().equals(adminName))
+					&&(admin.getAdminPassword().equals(adminPassword))) {
+				responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+				responseStructure.setMsg("Admin----LoggedIn----Successfully...");
+				responseStructure.setDescription("once admin logged in he can able to add train details ...");
+				responseStructure.setData(admin);
+				return responseStructure;
+				
 			}else {
-				return null;
+				responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+				responseStructure.setMsg("Admin----LoggedIn----Failed...");
+				responseStructure.setDescription("idiot check your username and password...");
+				responseStructure.setData(admin);
+				return responseStructure;
 			}
 		}else {
-			return null;
+			responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+			responseStructure.setMsg("Admin----Details not found...");
+			responseStructure.setDescription("Given username is not avaialable in database");
+			responseStructure.setData(admin);
+			return responseStructure;
 		}
 	}
 }

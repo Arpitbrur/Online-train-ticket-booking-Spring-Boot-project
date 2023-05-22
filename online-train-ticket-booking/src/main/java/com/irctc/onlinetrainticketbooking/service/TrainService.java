@@ -1,5 +1,8 @@
 package com.irctc.onlinetrainticketbooking.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,23 @@ public class TrainService {
 			responseStructure.setData(train);
 			return responseStructure;
 		}
+	}
+	
+	// display all train details		 
+	public List<Train> getAllTrainDetails(String trainSource, String trainDestination){
+		List<Train> trains = trainDao.getAllTrainDetails();
+		
+		List<Train> filterTrains = new ArrayList<Train>();
+		
+		for (Train train : trains) {
+			
+			if((train.getTrainSource().equalsIgnoreCase(trainSource)) 
+					&& (train.getTrainDestination().equalsIgnoreCase(trainDestination))) {
+				
+				filterTrains.add(train);
+			}
+		}
+		return filterTrains;
 	}
 	
 }
