@@ -11,6 +11,8 @@ import com.irctc.onlinetrainticketbooking.dao.UserDao;
 import com.irctc.onlinetrainticketbooking.dto.User;
 import com.irctc.onlinetrainticketbooking.repsonse.ResponseStructure;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Service
 public class UserService {
@@ -20,7 +22,10 @@ public class UserService {
 	
 	@Autowired
 	private ResponseStructure<User> responseStructure; 
-	
+
+	@Autowired
+	private HttpSession httpSession;
+
 	
 	// insert method for user-----------------------------------------------------------------
 	public ResponseStructure<User> insertUser(User user) {
@@ -68,6 +73,7 @@ public class UserService {
 					
 				if((user.getUserName().equals(userName)) && (user.getUserPassword().equals(userPassword))) {
 						
+					httpSession.setAttribute("userpassword", user.getUserPassword());
 					responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
 					responseStructure.setMsg("User----LoggedIn----Successfully...");
 					responseStructure.setDescription("once user logged in he can able to book the ticket ...");

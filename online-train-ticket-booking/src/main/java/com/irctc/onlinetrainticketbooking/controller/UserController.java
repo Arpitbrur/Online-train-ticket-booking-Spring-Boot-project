@@ -12,7 +12,6 @@ import com.irctc.onlinetrainticketbooking.dto.User;
 import com.irctc.onlinetrainticketbooking.repsonse.ResponseStructure;
 import com.irctc.onlinetrainticketbooking.service.UserService;
 
-//import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
@@ -21,8 +20,6 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-//	@Autowired
-//	private HttpSession httpSession;
 	
 	// insert method for user-------------------------------------------------------------
 	@PostMapping("/saveUser")
@@ -34,7 +31,6 @@ public class UserController {
 	@GetMapping("/loginUser/{userName}/{userPassword}")
 	public ResponseStructure<User> loginUser(@PathVariable String userName, @PathVariable String userPassword) {
 				
-		//httpSession.setAttribute("password", userPassword);
 		return service.loginUser(userName, userPassword);
 	}
 }

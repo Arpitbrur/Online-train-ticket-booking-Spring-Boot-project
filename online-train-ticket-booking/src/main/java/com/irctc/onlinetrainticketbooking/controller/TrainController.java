@@ -29,6 +29,6 @@ public class TrainController {
 	@GetMapping("/trainSearch/{trainSource}/{trainDestination}")
 	public List<Train> getTrainSourceToDestination(@PathVariable String trainSource, @PathVariable String trainDestination){
 	
-		return trainService.getAllTrainDetails(trainSource, trainDestination);
+		return trainService.getTrainSourceToDesination(trainSource, trainDestination);
 	}
 }

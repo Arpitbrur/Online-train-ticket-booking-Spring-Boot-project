@@ -1,5 +1,6 @@
 package com.irctc.onlinetrainticketbooking.service;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,9 @@ public class TrainService {
 	// insert Train Details once the ADMIN logged in
 	public ResponseStructure<Train> insertTrain(Train train) {
 		
-		if(httpSession.getAttribute("username") != null) {
+		if(httpSession.getAttribute("password") != null) {
+			train.setDepartureTime(LocalTime.of(11,30));
+			train.setArrivalTime(LocalTime.of(8,20));
 			Train train1 = trainDao.insertTrain(train);
 			
 			responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
@@ -46,7 +49,7 @@ public class TrainService {
 	}
 	
 	// display all train details		 
-	public List<Train> getAllTrainDetails(String trainSource, String trainDestination){
+	public List<Train> getTrainSourceToDesination(String trainSource, String trainDestination){
 		List<Train> trains = trainDao.getAllTrainDetails();
 		
 		List<Train> filterTrains = new ArrayList<Train>();

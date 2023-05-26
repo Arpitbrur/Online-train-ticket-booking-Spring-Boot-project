@@ -1,5 +1,7 @@
 package com.irctc.onlinetrainticketbooking.dto;
 
+import java.time.LocalTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -13,6 +15,8 @@ public class Train {
 	private String trainName;
 	private String trainSource;
 	private String trainDestination;
+	private LocalTime departureTime;
+	private LocalTime arrivalTime;
 	private String saturday;
 	private String sunday;
 	private String monday;
@@ -44,6 +48,18 @@ public class Train {
 	}
 	public void setTrainDestination(String trainDestination) {
 		this.trainDestination = trainDestination;
+	}
+	public LocalTime getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(LocalTime departureTime) {
+		this.departureTime = departureTime;
+	}
+	public LocalTime getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(LocalTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 	public String getSaturday() {
 		return saturday;
@@ -87,6 +103,7 @@ public class Train {
 	public void setFriday(String friday) {
 		this.friday = friday;
 	}
+	
 	
 	
 }
