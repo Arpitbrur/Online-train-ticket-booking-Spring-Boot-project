@@ -22,7 +22,6 @@ public class AdminDao {
 	}
 	
 	// login Admin with adminName and Password
-	
 	public Admin loginWithAdmin(String adminName) {		
 		return adminRepository.getByAdminName(adminName);
 	}

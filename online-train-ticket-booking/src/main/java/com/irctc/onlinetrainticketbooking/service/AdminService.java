@@ -51,7 +51,7 @@ public class AdminService {
 	
 	// login Admin with adminName and Password
 		 
-public ResponseStructure<Admin> loginWithAdmin(String adminName,String adminPassword) {
+	public ResponseStructure<Admin> loginWithAdmin(String adminName,String adminPassword) {
 		
 		Admin admin=adminDao.loginWithAdmin(adminName);
 		

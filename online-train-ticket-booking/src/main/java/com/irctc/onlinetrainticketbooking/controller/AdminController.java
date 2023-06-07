@@ -46,4 +46,15 @@ public class AdminController {
 		return adminService.loginWithAdmin(adminName, adminPassword);
 	}
 	
+	// logout method
+	@GetMapping(value ="/logoutAdmin")
+	public String logoutAdmin() {
+		if(httpSession.getAttribute("password")!= null) {
+			httpSession.invalidate();
+			return "Admin logout Successfully";
+		}else {
+			return "you are not loggeg in";
+		}
+	}
+	
 }
