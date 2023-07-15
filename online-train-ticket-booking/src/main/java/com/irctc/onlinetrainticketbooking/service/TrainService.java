@@ -48,6 +48,13 @@ public class TrainService {
 		}
 	}
 	
+	
+	// delete train by trainNumber
+	public String deleteTrain(int trainNumber) {
+		return trainDao.deleteTrain(trainNumber);
+	}	
+	
+	
 	// display all train details		 
 	public List<Train> getTrainSourceToDesination(String trainSource, String trainDestination){
 		List<Train> trains = trainDao.getAllTrainDetails();

@@ -48,6 +48,11 @@ public class AdminService {
 		}
 	}
 	
+	// delete Admin with admin Id
+	public String deleteAdmin(int adminId) {
+		return adminDao.deleteAdmin(adminId);
+	}	
+	
 	
 	// login Admin with adminName and Password
 		 

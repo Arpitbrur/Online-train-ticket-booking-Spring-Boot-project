@@ -1,6 +1,7 @@
 package com.irctc.onlinetrainticketbooking.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class AdminController {
 	@Autowired
 	private HttpSession httpSession;
 	
-	// register admin methods where i will register admin details in tables
+	// register admin methods where I will register admin details in tables
 	@PostMapping("/registerAdmin")
 	public Admin registerAdmin(@RequestBody Admin admin) {
 		Admin admin2 = adminService.registerAdmin(admin);
@@ -37,6 +38,11 @@ public class AdminController {
 		}
 	}
 	
+	// delete Admin with admin Id
+	@DeleteMapping("/deleteAdmin/{adminId}")
+	public String deleteAdmin(@PathVariable int adminId) {
+		return adminService.deleteAdmin(adminId);
+	}	
 	// login Admin with adminName and Password
 	@GetMapping("/loginAdmin/{adminName}/{adminPassword}")
 	public ResponseStructure<Admin> loginWithAdmin(@PathVariable String adminName,@PathVariable String adminPassword) {

@@ -3,6 +3,7 @@ package com.irctc.onlinetrainticketbooking.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,13 @@ public class TrainController {
 			return trainService.insertTrain(train);
 		}
 	
+	// delete train by trainNumber
+	@DeleteMapping("/deleteTrain/{trainNumber}")
+	public String deleteTrain(@PathVariable int trainNumber) {
+		return trainService.deleteTrain(trainNumber);
+	}	
+			 
+			 
 	// display all train details	
 	@GetMapping("/trainSearch/{trainSource}/{trainDestination}")
 	public List<Train> getTrainSourceToDestination(@PathVariable String trainSource, @PathVariable String trainDestination){
