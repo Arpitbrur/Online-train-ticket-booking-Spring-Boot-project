@@ -15,6 +15,7 @@ public class Train {
 	private String trainName;
 	private String trainSource;
 	private String trainDestination;
+	private int trainSeatNumber;
 	private LocalTime departureTime;
 	private LocalTime arrivalTime;
 	private String saturday;
@@ -48,6 +49,12 @@ public class Train {
 	}
 	public void setTrainDestination(String trainDestination) {
 		this.trainDestination = trainDestination;
+	}
+	public int getTrainSeatNumber() {
+		return trainSeatNumber;
+	}
+	public void setTrainSeatNumber(int trainSeatNumber) {
+		this.trainSeatNumber = trainSeatNumber;
 	}
 	public LocalTime getDepartureTime() {
 		return departureTime;
@@ -103,7 +110,5 @@ public class Train {
 	public void setFriday(String friday) {
 		this.friday = friday;
 	}
-	
-	
 	
 }

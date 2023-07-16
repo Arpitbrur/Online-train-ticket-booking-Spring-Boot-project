@@ -28,7 +28,8 @@ public class BookTrainService {
 	@Autowired
 	private HttpSession httpSession;
 	
-	// BookTrain Method----------------------------------------------------------------------------
+	//  insert BookTrain Method----------------------------------------------------------------------------
+	@SuppressWarnings("unused")
 	public ResponseStructure<BookTrain> insertBookTrain(BookTrain bookTrain, String trainSource,String trainDestination,int trainNumber) {
 
 		List<Train> trains = trainService.getTrainSourceToDesination(trainSource, trainDestination);
@@ -47,7 +48,7 @@ public class BookTrainService {
 					bookTrain.setDestination(train.getTrainDestination());
 					bookTrain.setSource(train.getTrainSource());
 					bookTrain.setTrainName(train.getTrainName());
-					bookTrain.setSeatNumber(345);
+					bookTrain.setSeatNumber(train.getTrainSeatNumber());
 					bookTrain.setTrainNumber(train.getTrainNumber());
 					bookTrain.setPnrNumber(pnr);
 					
@@ -71,13 +72,12 @@ public class BookTrainService {
 					responseStructure.setMsg("Train number is not correct....or source and detination are not correct");
 					responseStructure.setDescription("please provide correct source and destination....or train is not running on provided source destination");
 					responseStructure.setData(bookTrain);
-				}
-				
+				}				
 			}
 		}else {
 			responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
 			responseStructure.setMsg("Please login with user and then booked the train");
-			responseStructure.setDescription("without user logoin you cant book ticket");
+			responseStructure.setDescription("without user logIn you can't book ticket");
 			responseStructure.setData(bookTrain);
 		}
 		return responseStructure;

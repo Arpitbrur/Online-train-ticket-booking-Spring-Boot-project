@@ -1,5 +1,7 @@
 package com.irctc.onlinetrainticketbooking.dao;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,17 @@ public class UserDao {
 	// insert method for user------------------------------------------------------------
 	public User insertUser(User user) {
 		return userRepository.save(user);
+	}
+	
+	// delete method for user--------------------------------------------------------------
+	public String deleteUser(int userId) {
+		Optional<User> optional = userRepository.findById(userId);
+		if(optional.isPresent()) {
+			userRepository.delete(optional.get());
+			return "user deleted successfully ";
+		}else {
+			return "given id is not found in database";
+		}
 	}
 	
 	// User login--------------------------------------------------------------------------

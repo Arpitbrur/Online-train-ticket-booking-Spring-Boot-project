@@ -48,6 +48,27 @@ public class TrainService {
 		}
 	}
 	
+	// update Train by train number
+	public ResponseStructure<Train> updateTrain(Train train, int trainNumber) {
+		
+		if(httpSession.getAttribute("password")!= null) {
+			
+			Train train1 = trainDao.updateTrain(train, trainNumber);
+			
+			responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+			responseStructure.setMsg("train details updated successfully in database");
+			responseStructure.setDescription("train details updated successfully where trainnumber is a primary key and etc...");
+			responseStructure.setData(train1);
+			return responseStructure;
+		}else {
+			responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+			responseStructure.setMsg("please logged in with admin");
+			responseStructure.setDescription("please logged in with admin and then try to update the train details...");
+			responseStructure.setData(train);
+			return responseStructure;
+		}
+	}	
+	
 	
 	// delete train by trainNumber
 	public String deleteTrain(int trainNumber) {

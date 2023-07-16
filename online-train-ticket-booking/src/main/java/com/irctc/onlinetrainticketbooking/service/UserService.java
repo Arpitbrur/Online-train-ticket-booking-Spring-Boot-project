@@ -64,6 +64,10 @@ public class UserService {
 
 	}
 	
+	// delete method for user--------------------------------------------------------------
+	public String deleteUser(int userId) {
+		return userDao.deleteUser(userId);
+	}
 	
 	// User login--------------------------------------------------------------------------
 		public ResponseStructure<User> loginUser(String userName, String userPassword) {

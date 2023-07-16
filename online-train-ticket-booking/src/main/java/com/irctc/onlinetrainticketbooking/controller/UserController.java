@@ -1,6 +1,7 @@
 package com.irctc.onlinetrainticketbooking.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,19 +19,24 @@ import com.irctc.onlinetrainticketbooking.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService service;
+	private UserService userService;
 	
 	
 	// insert method for user-------------------------------------------------------------
 	@PostMapping("/saveUser")
 	public ResponseStructure<User> insertUser(@RequestBody User user) {
-		return service.insertUser(user);
+		return userService.insertUser(user);
+	}
+	
+	// delete method for user--------------------------------------------------------------
+	@DeleteMapping("/deleteUser/{userId}")
+	public String deleteUser(@PathVariable int userId) {
+		return userService.deleteUser(userId);
 	}
 	
 	// User login--------------------------------------------------------------------------
 	@GetMapping("/loginUser/{userName}/{userPassword}")
-	public ResponseStructure<User> loginUser(@PathVariable String userName, @PathVariable String userPassword) {
-				
-		return service.loginUser(userName, userPassword);
+	public ResponseStructure<User> loginUser(@PathVariable String userName, @PathVariable String userPassword) {				
+		return userService.loginUser(userName, userPassword);
 	}
 }

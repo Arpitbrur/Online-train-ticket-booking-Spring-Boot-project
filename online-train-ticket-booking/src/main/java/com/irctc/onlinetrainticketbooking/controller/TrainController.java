@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,13 @@ public class TrainController {
 		public ResponseStructure<Train> insertTrain(@RequestBody Train train) {
 			return trainService.insertTrain(train);
 		}
+	
+	// update Train by train number
+	@PutMapping("/updateTrain/{trainNumber}")
+	public ResponseStructure<Train> updateTrain(@RequestBody Train train,@PathVariable int trainNumber) {
+		return trainService.updateTrain(train, trainNumber);
+	}	
+	
 	
 	// delete train by trainNumber
 	@DeleteMapping("/deleteTrain/{trainNumber}")
